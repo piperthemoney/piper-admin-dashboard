@@ -1,0 +1,44 @@
+@import "tailwindcss/tailwind.css";
+
+.custom-data-grid .MuiDataGrid-root {
+  border: none;
+}
+
+.custom-data-grid .MuiDataGrid-columnHeader {
+  font-size: 18px;
+  /* font-family: "Maven Pro", "sans-serif"; */
+  background-color: #1e293b;
+  color: white;
+}
+
+.custom-data-grid .MuiDataGrid-cell {
+  font-size: 16px;
+  font-weight: 600;
+  /* font-family: "Maven Pro", "sans-serif"; */
+}
+
+.custom-data-grid .MuiDataGrid-row {
+  font-size: 16px;
+  font-weight: 400;
+  /* font-family: "Maven Pro", "sans-serif"; */
+  /* margin: 5px auto; */
+  /* border: 1px solid #e0e0e0; */
+  /* box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 0.6);
+    border-radius: 2px; */
+}
+
+.custom-data-grid .MuiDataGrid-cell:focus,
+.custom-data-grid .MuiDataGrid-columnHeader:focus,
+.custom-data-grid .MuiDataGrid-columnHeader:focus-within {
+  outline: none !important;
+  border: none !important;
+}
+
+.MuiDataGrid-columnHeaders .MuiCheckbox-root {
+  border-radius: 0;
+  color: white;
+}
+
+.MuiDataGrid-columnHeaders .MuiCheckbox-root.Mui-checked {
+  color: white;
+}
