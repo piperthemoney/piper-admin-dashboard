@@ -1,24 +1,23 @@
-import Dashboard from "./components/Dashboard";
-import GenerateCode from "./components/GenerateCode";
-import Sidebar from "./components/Sidebar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { SnackbarProvider } from "notistack";
+import Login from "./components/auth/Login";
+import Home from "./pages/Home";
+import PrivateRoute from "./PrivateRoute";
+import { Toaster } from 'sonner'
 
 export default function App() {
   return (
     <>
       <Router>
-        <div className="flex">
-          <Sidebar />
-          <SnackbarProvider maxSnack={3}>
-            <div className="flex-1 p-4">
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/code" element={<GenerateCode />} />
-              </Routes>
-            </div>
-          </SnackbarProvider>
-        </div>
+        <Toaster position="top-right" />
+        <Routes>
+          <Route path="/auth/sign-in" element={<Login />} />
+          <Route path="*" element={ 
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          } />
+        </Routes>
+        
       </Router>
     </>
   );

@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 const Sidebar = () => {
   return (
-    <div className="flex flex-col bg-gray-800 text-white w-64">
+    <div className="flex flex-col h-screen bg-gray-800 text-white w-64">
       <div className="flex items-center justify-center h-16 border-b border-gray-700">
         <h1 className="text-xl font-bold">My Sidebar</h1>
       </div>
@@ -16,15 +18,17 @@ const Sidebar = () => {
               Profile
             </a>
           </li> */}
-          <li>
-            <a href="/code" className="block p-2 rounded hover:bg-gray-700">
-              Code Generator
+          {/* <li>
+            <a href="/accs" className="block p-2 rounded hover:bg-gray-700">
+              Account List
             </a>
-          </li>
+          </li> */}
           <li>
-            <a href="#" className="block p-2 rounded hover:bg-gray-700">
+            <Link to="/auth/sign-in" onClick={()=>{
+              localStorage.removeItem("piper-token");
+            }} className="block p-2 rounded hover:bg-gray-700">
               Logout
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
