@@ -23,13 +23,13 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="bg-secondary p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
         
         <form>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
+            <label htmlFor="email" className="block text-white font-medium mb-2">
               Email
             </label>
             <input
@@ -38,12 +38,12 @@ function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-black px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           
           <div className="mb-6">
-            <label htmlFor="password" className="block text-gray-700 font-medium mb-2">
+            <label htmlFor="password" className="block text-white font-medium mb-2">
               Password
             </label>
             <input
@@ -52,16 +52,16 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-black px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           
           <button
             type="submit"
             onClick={handleSubmit}
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
+            className="w-full bg-primary text-black py-2 rounded-md hover:bg-blue-400 transition-colors"
           >
-            Login
+            Enter your Account
           </button>
         </form>
 

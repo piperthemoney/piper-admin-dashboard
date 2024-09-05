@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "/api";
+const BASE_URL = "https://piper-uglv.onrender.com/";
 
 // Create an Axios instance
 axios.defaults.baseURL = BASE_URL;
@@ -9,7 +9,7 @@ const setAuthToken = (token) => {
 };
 axios.defaults.headers.common["Accept"] = "application/json";
 axios.defaults.headers.post["Content-Type"] = "application/json";
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 export { setAuthToken };
 export default axios;

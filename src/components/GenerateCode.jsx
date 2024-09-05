@@ -10,7 +10,7 @@ import { CiCircleInfo } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 
 const GenerateCode = ({ closeSidebar }) => {
-  const navigate = useNavigate();
+ 
   const { notify } = useCustomSnackbar();
   const [merchant, setMerchant] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -26,12 +26,14 @@ const GenerateCode = ({ closeSidebar }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    notify("Code generating","loading");
     const data = {
       merchant,
       quantity: parseInt(quantity),
       lifespan,
     };
     const res = await generateCode(data);
+    closeSidebar();
     if (res.code === 201) {
       notify("Code generated successfully", "success");
       return closeSidebar();
@@ -43,8 +45,8 @@ const GenerateCode = ({ closeSidebar }) => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen relative">
-      <div className="h-full px-8 rounded-lg shadow-md w-96">
+    <div className="flex items-center bg-secondary justify-center items-center h-screen overflow-y-auto py-5 relative">
+      <div className="h-full px-8 rounded-lg w-96 bg-secondary">
         <div className="flex justify-between items-center">
           <p className="text-2xl font-bold mb-5">Create Piper Accounts</p>
         </div>
@@ -54,7 +56,7 @@ const GenerateCode = ({ closeSidebar }) => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
-              className="block text-lg font-bold text-gray-700"
+              className="block text-lg font-bold text-white"
               htmlFor="merchant"
             >
               Code Create Date
@@ -68,14 +70,14 @@ const GenerateCode = ({ closeSidebar }) => {
                 id="input-group-1"
                 value={formatDate(currentDate)}
                 disabled
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                className="bg-black border border-gray-300 text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
                 placeholder="name@flowbite.com"
               />
             </div>
           </div>
           <div className="mb-4">
             <label
-              className="block text-lg font-bold text-gray-700"
+              className="block text-lg font-bold text-white"
               htmlFor="merchant"
             >
               Merchant Name
@@ -89,7 +91,7 @@ const GenerateCode = ({ closeSidebar }) => {
                 value={merchant}
                 onChange={(e) => setMerchant(e.target.value)}
                 id="input-group-1"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                className="bg-black border border-gray-300 text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
                 placeholder="marchant name"
               />
             </div>
@@ -97,7 +99,7 @@ const GenerateCode = ({ closeSidebar }) => {
           <div className="mb-4">
             <label
               //   placeholder="Enter the quantity"
-              className="block text-lg font-bold text-gray-700"
+              className="block text-lg font-bold text-white"
               htmlFor="quantity"
             >
               Account Number
@@ -111,7 +113,7 @@ const GenerateCode = ({ closeSidebar }) => {
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
                 id="input-group-1"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                className="bg-black border border-gray-300 text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
                 placeholder="marchant name"
               />
             </div>
@@ -124,7 +126,7 @@ const GenerateCode = ({ closeSidebar }) => {
           </div>
           <div className="mb-4">
             <label
-              className="block text-sm font-medium text-gray-700"
+              className="block text-lg font-bold text-white"
               htmlFor="lifespan"
             >
               Lifespan
@@ -138,14 +140,14 @@ const GenerateCode = ({ closeSidebar }) => {
                 value={lifespan}
                 onChange={(e) => setLifespan(e.target.value)}
                 id="input-group-1"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                className="bg-black border border-gray-300 text-white text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
                 placeholder="enter your account duration"
               />
             </div>
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition duration-200"
+            className="w-full bg-primary text-black p-2 rounded-md hover:bg-blue-700 transition duration-200"
           >
             Generate Code
           </button>

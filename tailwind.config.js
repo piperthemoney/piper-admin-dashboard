@@ -6,6 +6,16 @@ export default {
       fontFamily: {
         sans: ["Graphik", "sans-serif"],
         serif: ["Merriweather", "serif"],
+        squada: ['"Squada One"', "sans-serif"],
+      },
+      colors: {
+        primary: "#04DAFF", // Custom primary color
+        secondary: "#121212", // Custom secondary color
+        accent: "#FBBF24", // Custom accent color
+        active: "#00FF00",
+        expired: "#FF0000",
+        pending: "#FFFF00",
+        // Add more custom colors as needed
       },
     },
   },

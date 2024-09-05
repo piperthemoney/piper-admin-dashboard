@@ -9,7 +9,7 @@ const TicketTable = forwardRef((props, ref) => {
   const [rows, setRows] = useState([]);
   const getMarchents = async () => {
     const res = await getmarchents();
-    setRows(res.data);
+    setRows(res.data.reverse());
   };
 
   useImperativeHandle(ref, () => ({
@@ -20,6 +20,7 @@ const TicketTable = forwardRef((props, ref) => {
   }));
 
   const handleSearch = (name) => {
+    console.log(name)
     
    if (name) {
       const filteredRows = rows.filter((row) =>
@@ -35,14 +36,14 @@ const TicketTable = forwardRef((props, ref) => {
 
   useEffect(() => {
     getMarchents();
-  }, []);
+  }, [props]);
 
   return (
-    <div className="overflow-x-auto scrollbar max-h-[450px] w-full rounded-lg">
-      <div className="w-full rounded-lg overflow-hidden">
-        <table className="min-w-full bg-gray-200 gap-2">
-          <thead className="border-space-y-5  ">
-            <tr className="bg-gray-800 text-white text-left">
+    <div className="overflow-x-auto bg-secondary p-4  w-full rounded-lg">
+      <div className="w-full bg-secondary h-screen overflow-y-auto max-h-[430px]">
+        <table className="min-w-full gap-2 ">
+          <thead className="border-space-y-5 sticky top-0 z-5">
+            <tr className="bg-white text-black text-left rounded-lg">
               <th className="py-4 px-4">No</th>
               <th className="py-4 px-4">Merchant Name</th>
               <th className="py-4 px-4">Accounts Num</th>
@@ -51,29 +52,29 @@ const TicketTable = forwardRef((props, ref) => {
               <th className="py-4 px-4">Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-gray-200">
-            {/* <tr>
-              <td className="py-2 px-4 bg-white"></td>
-              <td className="py-2 px-4 bg-white"></td>
-              <td className="py-2 px-4 bg-white"></td>
-              <td className="py-2 px-4 bg-white"></td>
-              <td className="py-2 px-4 bg-white"></td>
-              <td className="py-2 px-4 bg-white"></td>
-            </tr> */}
-            {rows.map((item, index) => (
+          <tbody >
+            <tr className="bg-secondary">
+              <td className="py-2 px-4"></td>
+              <td className="py-2 px-4"></td>  
+              <td className="py-2 px-4"></td>
+              <td className="py-2 px-4"></td>
+              <td className="py-2 px-4"></td>
+              <td className="py-2 px-4"></td>
+            </tr>
+            {rows && rows.length !==0 && rows.map((item, index) => (
               <tr
                 key={index}
-                className="bg-blue-100 border-b hover:bg-gray-100"
-              >
+                className="bg-secondary text-white hover:bg-black"
+              > 
                 <td className="py-2 px-4">{index + 1}</td>
                 <td className="py-2 px-4">{item.merchant}</td>
-                <td className="py-2 px-4">{item.codes.length}</td>
+                <td className="py-2 px-4">{item.quantity}</td>
                 <td className="py-2 px-4">{item.lifespan}</td>
-                <td className="py-2 px-4">{}</td>
+                <td className="py-2 px-4">{item.purchaseDate}</td>
                 <td className="py-2 px-4">
                   <button onClick={()=>{
-                    navigate(`/merchant-detail/${index+1}`)
-                  }} className="flex px-4 py-2 gap-4 bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600">
+                    navigate(`/merchant-detail/${item.id}`)
+                  }} className="flex px-4 py-2 gap-4 bg-white text-black py-1 px-3 rounded-lg hover:bg-black hover:text-white hover:border-white border-2">
                     <LuTicket className="text-2xl" />
                     View Tickets
                   </button>

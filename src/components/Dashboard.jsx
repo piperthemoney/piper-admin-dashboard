@@ -8,6 +8,7 @@ import { MdOutlineCalendarMonth } from "react-icons/md";
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [search,setSearch ] = useState("");
+  const [gettable,setgetTable] = useState(false);
   const childRef = useRef();
 
   const handleKeyPress = (event) => {  
@@ -23,9 +24,10 @@ const Dashboard = () => {
   return (
     <div className="flex-col">
       <div className="flex justify-between">
+        <div className="flex items-center gap-5">
         <div className="relative w-[400px]">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3">
-            <IoSearch className="text-2xl" />
+            <IoSearch className="text-2xl text-white" />
           </div>
           <input
             type="search"
@@ -33,13 +35,14 @@ const Dashboard = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onKeyPress={handleKeyPress}  
-            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-white focus:border-white"
-            placeholder="Search Mockups, Logos..."
+            className="block w-full p-4 ps-10 text-sm text-white border border-gray-300 rounded-lg bg-black focus:ring-white focus:border-white"
+            placeholder="Search Marchents"
             required
           />
+          </div>
           <button
             type="submit"
-            className="flex justify-center items-center gap-4 text-white absolute end-2.5 bottom-[7px] bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
+            className="flex justify-center items-center gap-10 text-white bg-black border hover:bg-blue-800 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-3"
           >
             <MdOutlineCalendarMonth className="text-2xl" />
             {new Date().toLocaleDateString()}
@@ -47,7 +50,7 @@ const Dashboard = () => {
         </div>
         <button
           onClick={toggleSidebar}
-          className="px-5 py-2 bg-gray-800 text-white rounded-md flex gap-4 items-center"
+          className="px-5 py-2 bg-primary text-black rounded-md flex gap-4 items-center"
         >
           <LuTicket className="text-2xl" />
           <span>Create Account</span>
@@ -60,16 +63,24 @@ const Dashboard = () => {
         onClick={toggleSidebar}
       ></div>
       <div
-        className={`fixed right-0 z-10 top-0 w-200 h-full bg-white shadow-lg transform transition-transform ${
+        className={`fixed right-0 z-10 top-0 w-200 h-full shadow-lg transform transition-transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="px-4">
+        <div style={{
+          borderRadius:"20px 0 0 20px",
+          overflow:"hidden",
+          border:"1px solid rgba(255,255,255,0.3)", 
+          borderTop:"none",
+          borderBottom:"none",
+          borderRight:"none",
+          // background:"black"
+        }}>
           <GenerateCode closeSidebar={toggleSidebar} />
         </div>
       </div>
       <div className="flex-1 py-4">
-        <TicketTable search={search} ref={childRef} />
+        <TicketTable search={search} ref={childRef} closeSidebar={isOpen} />
       </div>
     </div>
   );

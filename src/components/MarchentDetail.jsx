@@ -1,82 +1,89 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 import { FaRegUserCircle } from "react-icons/fa";
 import { LuTicket } from "react-icons/lu";
 import { IoTimer } from "react-icons/io5";
+import { Link, useParams } from 'react-router-dom';
+import getmarchentsDetail from '../api/getmarchentDetail';
+import MarchentTable from './marchentTable/marchentTable';
 
 function MarchentDetails() {
+  const { id } = useParams();
+  const [accs,setAccs] = useState([]);
+  const [name,setName] = useState("");
+  const [date,setDates] = useState("");
+  const [num, setNum] = useState('');
+  const [duration,setDuration]=useState("");
+  console.log(id)
+
+  const getMarchentsDetail=async ()=>{
+    const res = await getmarchentsDetail(id);
+    console.log("codes",res.data.codes);
+    setAccs(res.data.codes);
+    setName(res.data.merchant)
+    setDates(res.data.purchaseDate);
+    setNum(res.data.quantity);
+    setDuration(res.data.Duartion);
+    console.log("d",res.data.Duration);
+  }
+
+  useEffect(()=>{
+    getMarchentsDetail();
+  },[])
+
   return (
     <div className="p-4">
-      <div className="flex items-center space-x-2  cursor-pointer">
+      <Link to="/" className="flex items-center space-x-2  cursor-pointer">
         <FaArrowLeftLong className='text-2xl'/>
         <span className="text-2xl font-bold ps-3">Purchase Details</span>
-      </div>
+      </Link>
 
-      <div className="mt-4 rounded-lg p-4">
-        <div className="flex justify-between items-start">
+        <div className="my-5 flex justify-between items-center bg-secondary px-6 py-6  w-full rounded-lg">
+
           <div>
-            <h2 className="text-3xl font-bold mb-3">Marchant</h2>
+            <h2 className="text-xl font-bold mb-3">Marchant</h2>
             <p className="flex items-center">
-              <FaRegUserCircle className='text-2xl'/>
-             <span className='ps-3 font-bold'> May Than Oo</span>
+              <FaRegUserCircle className='text-2xl' />
+             <span className='ps-3 font-bold'> {name}</span>
             </p>
           </div>
 
-          {/* <button className="text-white bg-black hover:bg-gray-800 rounded px-3 py-1 text-sm flex items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-4 h-4 mr-1"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M16.862 3.487a2.25 2.25 0 00-3.182 0l-9 9A2.25 2.25 0 004.5 14.25V18a.75.75 0 00.75.75h3.75a2.25 2.25 0 001.591-.659l9-9a2.25 2.25 0 000-3.182l-3-3z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M11.25 6.75l6 6"
-              />
-            </svg>
-            Edit Info
-          </button> */}
-        </div>
+          <div className="h-10 border-l-2 border-gray-700"></div>
 
-        <div className="mt-10 flex justify-between items-center w-full">
           <div className=''>
-            <h2 className="text-2xl font-bold mb-3">Purchase Date</h2>
+            <h2 className="text-xl font-bold mb-3">Purchase Date</h2>
             <p className="flex items-center">
               <MdOutlineCalendarMonth className='text-2xl'/>
-             <span className='ps-3 font-bold'> May Than Oo</span>
+             <span className='ps-3 font-bold'> {date}</span>
             </p>
           </div>
 
           <div className="h-10 border-l-2 border-gray-700"></div>
 
           <div>
-            <h2 className="text-2xl font-bold mb-3">Account Numbers</h2>
+            <h2 className="text-xl font-bold mb-3">Account Numbers</h2>
             <p className="flex items-center">
               <LuTicket className='text-2xl'/>
-             <span className='ps-3 font-bold'> May Than Oo</span>
+             <span className='ps-3 font-bold'>{num}</span>
             </p>
           </div> 
 
           <div className="h-10 border-l-2 border-gray-700"></div>
 
           <div>
-            <h2 className="text-2xl font-bold mb-3">Accounts Duration</h2>
+            <h2 className="text-xl font-bold mb-3">Accounts Duration</h2>
             <p className="flex items-center">
               <IoTimer className='text-2xl'/>
-             <span className='ps-3 font-bold'> May Than Oo</span>
+             <span className='ps-3 font-bold'> {duration}</span>
             </p>
           </div>
         </div>
-      </div>
+      
+
+       <div className="mt-5">
+          <MarchentTable accs = {accs}/>
+       </div>
     </div>
   );
 }

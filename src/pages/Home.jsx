@@ -3,7 +3,7 @@ import GenerateCode from "./../components/GenerateCode";
 import Sidebar from "./../components/Sidebar";
 import {  Route, Routes } from "react-router-dom";
 import { SnackbarProvider } from "notistack";
-import OffCanvasSidebar from "./../components/offcanavs";
+// import OffCanvasSidebar from "./../components/offcanavs";
 import MarchentDetail from "./../components/MarchentDetail";
 
 function Home() {
@@ -15,7 +15,7 @@ function Home() {
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/code" element={<GenerateCode />} />
-                  <Route path="/accs" element={<OffCanvasSidebar />} />
+                  {/* <Route path="/accs" element={<OffCanvasSidebar />} /> */}
                   <Route path="/merchant-detail/:id" element={<MarchentDetail />} />
                 </Routes>
               </div>
