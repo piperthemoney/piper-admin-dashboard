@@ -40,13 +40,13 @@ const Dashboard = () => {
             required
           />
           </div>
-          <button
+          {/* <button
             type="submit"
             className="flex justify-center items-center gap-10 text-white bg-black border hover:bg-blue-800 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-3"
           >
             <MdOutlineCalendarMonth className="text-2xl" />
             {new Date().toLocaleDateString()}
-          </button>
+          </button> */}
         </div>
         <button
           onClick={toggleSidebar}
