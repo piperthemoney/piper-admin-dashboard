@@ -9,7 +9,7 @@ const Sidebar = () => {
     <div className="flex flex-col h-screen bg-secondary text-white w-64">
       <div className="flex items-center justify-center py-10">
         <img src={logo} />
-        <h1 className="text-xl decoration-wavy font-bold px-5 font-squada text-[48px] tracking-widest">Piper</h1>
+        <p className="decoration-wavy font-bold px-5 font-squada text-[48px]">Piper</p>
       </div>
       <nav className="flex-1">
         <ul className="space-y-2 p-4">

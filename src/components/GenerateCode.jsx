@@ -87,7 +87,7 @@ const GenerateCode = ({ closeSidebar }) => {
                 onChange={(e) => setMerchant(e.target.value)}
                 id="input-group-1"
                 className="bg-black border border-gray-300 text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                placeholder="marchant name"
+                placeholder="merchant name"
               />
             </div>
           </div>
@@ -142,7 +142,7 @@ const GenerateCode = ({ closeSidebar }) => {
           </div>
           <button
             type="submit"
-            className="w-full bg-primary text-black p-2 rounded-md hover:bg-blue-700 transition duration-200"
+            className="w-full bg-primary text-black p-2 rounded-md transition duration-200 hover:text-primary hover:bg-black hover:border hover:border-primary"
           >
             Generate Code
           </button>

@@ -47,7 +47,7 @@ const TicketTable = forwardRef((props, ref) => {
           <thead className="border-space-y-5 sticky top-0 z-5">
             <tr className="bg-white text-black text-left rounded-lg">
               <th className="py-4 px-4 font-medium">No</th>
-              <th className="py-4 px-4 font-medium">Marchant Name</th>
+              <th className="py-4 px-4 font-medium">Merchant Name</th>
               <th className="py-4 px-4 font-medium">Accounts Num</th>
               <th className="py-4 px-4 font-medium">Duration</th>
               <th className="py-4 px-4 font-medium">Purchase Date</th>
