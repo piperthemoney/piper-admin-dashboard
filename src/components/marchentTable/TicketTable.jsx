@@ -2,6 +2,7 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import getmarchents from "../../api/getmarchents";
 import { LuTicket } from "react-icons/lu";
 import { Link, useNavigate } from "react-router-dom";
+import ConvertToMMT from "../ConvertToMMT";
 
 const TicketTable = forwardRef((props, ref) => {
   const { search } = props;
@@ -9,6 +10,7 @@ const TicketTable = forwardRef((props, ref) => {
   const [rows, setRows] = useState([]);
   const getMarchents = async () => {
     const res = await getmarchents();
+    console.log(res);
     setRows(res.data.reverse());
   };
 
@@ -44,12 +46,12 @@ const TicketTable = forwardRef((props, ref) => {
         <table className="min-w-full gap-2 ">
           <thead className="border-space-y-5 sticky top-0 z-5">
             <tr className="bg-white text-black text-left rounded-lg">
-              <th className="py-4 px-4">No</th>
-              <th className="py-4 px-4">Merchant Name</th>
-              <th className="py-4 px-4">Accounts Num</th>
-              <th className="py-4 px-4">Duration</th>
-              <th className="py-4 px-4">Purchase Date</th>
-              <th className="py-4 px-4">Actions</th>
+              <th className="py-4 px-4 font-medium">No</th>
+              <th className="py-4 px-4 font-medium">Marchant Name</th>
+              <th className="py-4 px-4 font-medium">Accounts Num</th>
+              <th className="py-4 px-4 font-medium">Duration</th>
+              <th className="py-4 px-4 font-medium">Purchase Date</th>
+              <th className="py-4 px-4 font-medium">Actions</th>
             </tr>
           </thead>
           <tbody >
@@ -64,17 +66,17 @@ const TicketTable = forwardRef((props, ref) => {
             {rows && rows.length !==0 && rows.map((item, index) => (
               <tr
                 key={index}
-                className="bg-secondary text-white hover:bg-black"
+                className="bg-secondary font-semibold text-white hover:bg-black text-[14px]"
               > 
                 <td className="py-2 px-4">{index + 1}</td>
                 <td className="py-2 px-4">{item.merchant}</td>
                 <td className="py-2 px-4">{item.quantity}</td>
                 <td className="py-2 px-4">{item.lifespan}</td>
-                <td className="py-2 px-4">{item.purchaseDate}</td>
+                <td className="py-2 px-4">{<ConvertToMMT utc={item.purchaseDate}/>}</td>
                 <td className="py-2 px-4">
                   <button onClick={()=>{
                     navigate(`/merchant-detail/${item.id}`)
-                  }} className="flex px-4 py-2 gap-4 bg-white text-black py-1 px-3 rounded-lg hover:bg-black hover:text-white hover:border-white border-2">
+                  }} className="flex px-4 py-2 text-[14px] gap-4 bg-white text-black py-1 px-3 rounded-lg hover:bg-black hover:text-white hover:border-white border-2">
                     <LuTicket className="text-2xl" />
                     View Tickets
                   </button>

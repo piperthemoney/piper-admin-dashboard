@@ -35,7 +35,7 @@ const Dashboard = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onKeyPress={handleKeyPress}  
-            className="block w-full p-4 ps-10 text-sm text-white border border-gray-300 rounded-lg bg-black focus:ring-white focus:border-white"
+            className="block w-full font-semibold p-4 ps-10 text-sm text-white border border-gray-300 rounded-lg bg-black focus:ring-white focus:border-white"
             placeholder="Search Marchents"
             required
           />
@@ -45,7 +45,7 @@ const Dashboard = () => {
         </div>
         <button
           onClick={toggleSidebar}
-          className="px-5 py-2 bg-primary text-black rounded-md flex gap-4 items-center"
+          className="px-5 py-2 bg-primary font-semibold text-black rounded-md flex gap-4 items-center"
         >
           <LuTicket className="text-2xl" />
           <span>Create Account</span>

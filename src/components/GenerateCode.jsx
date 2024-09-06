@@ -1,17 +1,15 @@
 import { useState } from "react";
-import { useCustomSnackbar } from "./snackbar";
 import generateCode from "../api/generatecode";
-import { useNavigate } from "react-router-dom";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 import { FaRegUserCircle } from "react-icons/fa";
 import { LuTicket } from "react-icons/lu";
-import { IoTimer } from "react-icons/io5";
+import { TbClockHour9 } from "react-icons/tb";
 import { CiCircleInfo } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 
 const GenerateCode = ({ closeSidebar }) => {
  
-  const { notify } = useCustomSnackbar();
+
   const [merchant, setMerchant] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [lifespan, setLifespan] = useState("");
@@ -26,21 +24,18 @@ const GenerateCode = ({ closeSidebar }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    notify("Code generating","loading");
     const data = {
       merchant,
       quantity: parseInt(quantity),
       lifespan,
     };
     const res = await generateCode(data);
-    closeSidebar();
     if (res.code === 201) {
-      notify("Code generated successfully", "success");
-      return closeSidebar();
-    } else if (res) {
-      return notify(res.response.data.message, "error");
-    } else {
-      return notify("Something went wrong", "error");
+      closeSidebar();
+      setMerchant("");
+      setQuantity(1);
+      setLifespan("");
+
     }
   };
 
@@ -109,12 +104,12 @@ const GenerateCode = ({ closeSidebar }) => {
                 <LuTicket className="text-2xl" />
               </div>
               <input
-                type="text"
+                type="number"
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
                 id="input-group-1"
-                className="bg-black border border-gray-300 text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                placeholder="marchant name"
+                className="bg-black border border-gray-300 text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 px-5 py-2.5"
+                placeholder="Add Quantity"
               />
             </div>
             <div className="flex gap-2 mt-1">
@@ -133,7 +128,7 @@ const GenerateCode = ({ closeSidebar }) => {
             </label>
             <div className="relative mb-6">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                <IoTimer className="text-2xl" />
+                <TbClockHour9 className="text-2xl" />
               </div>
               <input
                 type="text"

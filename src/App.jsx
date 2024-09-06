@@ -8,7 +8,7 @@ export default function App() {
   return (
     <>
       <Router>
-        <Toaster position="top-right" />
+        <Toaster position="top-center" richColors/>
         <Routes>
           <Route path="/auth/sign-in" element={<Login />} />
           <Route path="*" element={ 

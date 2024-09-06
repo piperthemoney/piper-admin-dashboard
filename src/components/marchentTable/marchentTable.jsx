@@ -71,10 +71,10 @@ export default function MarchentTable({accs}) {
       <table className="min-w-full gap-2 ">
         <thead className="border-space-y-5 sticky top-0 z-5">
           <tr className="bg-white text-black text-left rounded-lg">
-            <th className="py-4 px-4">No</th>
-            <th className="py-4 px-4">Accounts Num</th>
-            <th className="py-4 px-4">Activation Date</th>
-            <th className="py-4 px-4">Status</th>
+            <th className="py-4 px-4 font-medium">No</th>
+            <th className="py-4 px-4 font-medium">Accounts Num</th>
+            <th className="py-4 px-4 font-medium">Activation Date</th>
+            <th className="py-4 px-4 font-medium">Status</th>
           </tr>
         </thead>
         <tbody >

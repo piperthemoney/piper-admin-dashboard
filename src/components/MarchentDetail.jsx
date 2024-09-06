@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 import { FaRegUserCircle } from "react-icons/fa";
 import { LuTicket } from "react-icons/lu";
-import { IoTimer } from "react-icons/io5";
+import { TbClockHour9 } from "react-icons/tb";
 import { Link, useParams } from 'react-router-dom';
 import getmarchentsDetail from '../api/getmarchentDetail';
 import MarchentTable from './marchentTable/marchentTable';
+import ConvertToMMT from './ConvertToMMT';
 
 function MarchentDetails() {
   const { id } = useParams();
@@ -36,36 +37,36 @@ function MarchentDetails() {
     <div className="p-4">
       <Link to="/" className="flex items-center space-x-2  cursor-pointer">
         <FaArrowLeftLong className='text-2xl'/>
-        <span className="text-2xl font-bold ps-3">Purchase Details</span>
+        <span className="text-2xl font-bold ps-3 ">Purchase Details</span>
       </Link>
 
         <div className="my-5 flex justify-between items-center bg-secondary px-6 py-6  w-full rounded-lg">
 
           <div>
-            <h2 className="text-xl font-bold mb-3">Marchant</h2>
+            <h2 className="text-xl font-semibold mb-3 ">Marchant</h2>
             <p className="flex items-center">
               <FaRegUserCircle className='text-2xl' />
-             <span className='ps-3 font-bold'> {name}</span>
+             <span className='ps-3 font-medium'> {name}</span>
             </p>
           </div>
 
           <div className="h-10 border-l-2 border-gray-700"></div>
 
           <div className=''>
-            <h2 className="text-xl font-bold mb-3">Purchase Date</h2>
+            <h2 className="text-xl font-semibold mb-3">Purchase Date</h2>
             <p className="flex items-center">
               <MdOutlineCalendarMonth className='text-2xl'/>
-             <span className='ps-3 font-bold'> {date}</span>
+             <span className='ps-3 font-medium'> {<ConvertToMMT utc={date}/>}</span>
             </p>
           </div>
 
           <div className="h-10 border-l-2 border-gray-700"></div>
 
           <div>
-            <h2 className="text-xl font-bold mb-3">Account Numbers</h2>
+            <h2 className="text-xl font-semibold mb-3">Account Numbers</h2>
             <p className="flex items-center">
               <LuTicket className='text-2xl'/>
-             <span className='ps-3 font-bold'>{num}</span>
+             <span className='ps-3 font-medium'>{num}</span>
             </p>
           </div> 
 
@@ -74,8 +75,8 @@ function MarchentDetails() {
           <div>
             <h2 className="text-xl font-bold mb-3">Accounts Duration</h2>
             <p className="flex items-center">
-              <IoTimer className='text-2xl'/>
-             <span className='ps-3 font-bold'> {duration}</span>
+              <TbClockHour9 className='text-2xl'/>
+             <span className='ps-3 font-medium'> {duration}</span>
             </p>
           </div>
         </div>
