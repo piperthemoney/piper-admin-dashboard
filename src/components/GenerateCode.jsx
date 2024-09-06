@@ -40,8 +40,8 @@ const GenerateCode = ({ closeSidebar }) => {
   };
 
   return (
-    <div className="flex items-center bg-secondary justify-center items-center h-screen overflow-y-auto py-5 relative">
-      <div className="h-full px-8 rounded-lg w-96 bg-secondary">
+    <div className="flex bg-secondary justify-center items-center h-screen overflow-y-auto py-5 relative">
+      <div className="h-full flex justify-center flex-col px-8 rounded-lg w-96 bg-secondary">
         <div className="flex justify-between items-center">
           <p className="text-2xl font-bold mb-5">Create Piper Accounts</p>
         </div>
@@ -142,7 +142,8 @@ const GenerateCode = ({ closeSidebar }) => {
           </div>
           <button
             type="submit"
-            className="w-full bg-primary text-black p-2 rounded-md transition duration-200 hover:text-primary hover:bg-black hover:border hover:border-primary"
+            className="w-full bg-primary text-black p-2 rounded-md
+             transition duration-200 hover:text-primary hover:bg-black hover:border hover:border-primary"
           >
             Generate Code
           </button>
