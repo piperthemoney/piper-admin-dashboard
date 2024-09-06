@@ -41,7 +41,8 @@ const GenerateCode = ({ closeSidebar }) => {
 
   return (
     <div className="flex bg-secondary justify-center items-center h-screen overflow-y-auto py-5 relative">
-      <div className="h-full flex justify-center flex-col px-8 rounded-lg w-96 bg-secondary">
+      <div className="h-full flex justify-center flex-col
+       px-8 rounded-lg w-96 bg-secondary">
         <div className="flex justify-between items-center">
           <p className="text-2xl font-bold mb-5">Create Piper Accounts</p>
         </div>
