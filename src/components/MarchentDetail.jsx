@@ -20,13 +20,13 @@ function MarchentDetails() {
 
   const getMarchentsDetail=async ()=>{
     const res = await getmarchentsDetail(id);
-    console.log("codes",res.data.codes);
+    // console.log("codes",res.data.codes);
     setAccs(res.data.codes);
     setName(res.data.merchant)
     setDates(res.data.purchaseDate);
     setNum(res.data.quantity);
     setDuration(res.data.Duartion);
-    console.log("d",res.data.Duration);
+    // console.log("d",res.data.Duration);
   }
 
   useEffect(()=>{

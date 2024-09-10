@@ -5,7 +5,7 @@ import TicketTable from "./marchentTable/TicketTable";
 import { IoSearch } from "react-icons/io5";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 
-const Dashboard = () => {
+const AccList = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [search,setSearch ] = useState("");
   const [gettable,setgetTable] = useState(false);
@@ -81,4 +81,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default AccList;
