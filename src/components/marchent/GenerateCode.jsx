@@ -1,5 +1,5 @@
 import { useState } from "react";
-import generateCode from "../api/generatecode";
+import generateCode from "../../api/generatecode";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 import { FaRegUserCircle } from "react-icons/fa";
 import { LuTicket } from "react-icons/lu";

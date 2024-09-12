@@ -1,4 +1,4 @@
-import GenerateCode from "./../components/GenerateCode";
+import GenerateCode from "./../components/marchent/GenerateCode";
 import Sidebar from "./../components/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import { SnackbarProvider } from "notistack";
@@ -6,19 +6,20 @@ import { SnackbarProvider } from "notistack";
 import MarchentDetail from "../components/marchent/MarchentDetail";
 import AccList from "../components/marchent/MarchentList";
 import DashBoard from "../components/dashboard/DashBoard";
+import Server from "./../components/server/Server";
 
 function Home() {
   return (
     <div className="flex">
       <Sidebar />
       <SnackbarProvider maxSnack={3}>
-        <div className="flex-1 p-4">
+        <div className="flex-1 py-4">
           <Routes>
             <Route path="/" element={<DashBoard />} />
             <Route path="/acc" element={<AccList />} />
             <Route path="/code" element={<GenerateCode />} />
-            {/* <Route path="/accs" element={<OffCanvasSidebar />} /> */}
             <Route path="/merchant-detail/:id" element={<MarchentDetail />} />
+            <Route path="/server" element={<Server />} />
           </Routes>
         </div>
       </SnackbarProvider>

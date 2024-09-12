@@ -9,6 +9,19 @@ body {
   color: white;
 }
 
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4a5568; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Round edges of the scrollbar thumb */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #edf2f7; /* Background of the scrollbar track */
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
