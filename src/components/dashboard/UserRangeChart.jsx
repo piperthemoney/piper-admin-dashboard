@@ -2,18 +2,16 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LabelList } 
 
 // const totalUsers = data.reduce((sum, item) => sum + item.value, 0);
 
-export default function Component({chart,total}) {
-  console.log("chart",total)
+export default function Component({chart, total}) {
+  console.log("chart", total)
 
-  const data = Object.entries(chart?chart:[]).map(([name, value]) => ({  
+  const data = Object.entries(chart ? chart : []).map(([name, value]) => ({  
     name,  
     value  
   })); 
 
-
   const totalUsers = total * 10;
 
-  // console.log(data)
   return (
     <div className="w-full mx-auto bg-zinc-900 text-white p-6 rounded-lg">
       <h2 className="text-2xl font-bold mb-4">User Range Based On Lifespan</h2>
@@ -47,3 +45,11 @@ export default function Component({chart,total}) {
     </div>
   );
 }
+
+
+import PropTypes from 'prop-types';
+
+Component.propTypes = {
+  chart: PropTypes.object,
+  total: PropTypes.number.isRequired
+};

@@ -1,12 +1,11 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import getmarchents from "../../api/getmarchents";
 import { LuTicket } from "react-icons/lu";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ConvertToMMT from "../ConvertToMMT";
 
-const TicketTable = forwardRef((props, ref) => {
-  const { search } = props;
- const navigate = useNavigate();
+const TicketTable = forwardRef(({ search }, ref) => {
+  const navigate = useNavigate();
   const [rows, setRows] = useState([]);
   const getMarchents = async () => {
     const res = await getmarchents();
@@ -16,7 +15,7 @@ const TicketTable = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     invokeChildFunction() {
-      console.log("Child function invoked",search);
+      console.log("Child function invoked", search);
       handleSearch(search);
     }
   }));
@@ -34,11 +33,9 @@ const TicketTable = forwardRef((props, ref) => {
     }
   };
 
-
-
   useEffect(() => {
     getMarchents();
-  }, [props]);
+  }, []);
 
   return (
     <div className="overflow-x-auto bg-secondary p-4  w-full rounded-lg">
@@ -89,6 +86,12 @@ const TicketTable = forwardRef((props, ref) => {
     </div>
   );
 });
+
+import PropTypes from 'prop-types';
+
+TicketTable.propTypes = {
+  search: PropTypes.string
+};
 TicketTable.displayName = "TicketTable";
 
 
