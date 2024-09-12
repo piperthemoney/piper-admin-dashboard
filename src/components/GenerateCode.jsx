@@ -8,8 +8,6 @@ import { CiCircleInfo } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 
 const GenerateCode = ({ closeSidebar }) => {
- 
-
   const [merchant, setMerchant] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [lifespan, setLifespan] = useState("");
@@ -35,14 +33,15 @@ const GenerateCode = ({ closeSidebar }) => {
       setMerchant("");
       setQuantity(1);
       setLifespan("");
-
     }
   };
 
   return (
     <div className="flex bg-secondary justify-center items-center h-screen overflow-y-auto py-5 relative">
-      <div className="h-full flex justify-center flex-col
-       px-8 rounded-lg w-96 bg-secondary">
+      <div
+        className="h-full flex justify-center flex-col
+       px-8 rounded-lg w-96 bg-secondary"
+      >
         <div className="flex justify-between items-center">
           <p className="text-2xl font-bold mb-5">Create Piper Accounts</p>
         </div>
@@ -94,7 +93,6 @@ const GenerateCode = ({ closeSidebar }) => {
           </div>
           <div className="mb-4">
             <label
-              //   placeholder="Enter the quantity"
               className="block text-lg font-bold text-white"
               htmlFor="quantity"
             >
@@ -152,6 +150,12 @@ const GenerateCode = ({ closeSidebar }) => {
       </div>
     </div>
   );
+};
+
+import PropTypes from "prop-types";
+
+GenerateCode.propTypes = {
+  closeSidebar: PropTypes.func.isRequired,
 };
 
 export default GenerateCode;
