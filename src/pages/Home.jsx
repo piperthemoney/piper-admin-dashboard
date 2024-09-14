@@ -7,6 +7,7 @@ import MarchentDetail from "../components/marchent/MarchentDetail";
 import AccList from "../components/marchent/MarchentList";
 import DashBoard from "../components/dashboard/DashBoard";
 import Server from "./../components/server/Server";
+import ServerDetail from "../components/server/ServerDetail";
 
 function Home() {
   return (
@@ -20,6 +21,7 @@ function Home() {
             <Route path="/code" element={<GenerateCode />} />
             <Route path="/merchant-detail/:id" element={<MarchentDetail />} />
             <Route path="/server" element={<Server />} />
+            <Route path="/server-detail/:id" element={<ServerDetail />} />
           </Routes>
         </div>
       </SnackbarProvider>

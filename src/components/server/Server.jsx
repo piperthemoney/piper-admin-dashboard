@@ -4,10 +4,26 @@ import { MdOutlineCancel } from "react-icons/md";
 import { FiServer } from "react-icons/fi";
 import GenerateServer from "./GenerateServer";
 import "./server.css";
+import ServerTable from "./ServerTable";
 
 function Server() {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
+
+  const childRef = useRef();
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      childRef.current.invokeChildFunction();
+    }
+  };
+
+  const cancelSearch = () => {
+    setSearch("");
+    setTimeout(() => {
+      childRef.current.invokeChildFunction();
+    }, 100);
+  };
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -25,9 +41,9 @@ function Server() {
             <input
               type="text"
               id="default-search"
-              // value={search}
-              // onChange={(e) => setSearch(e.target.value)}
-              // onKeyPress={handleKeyPress}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyPress={handleKeyPress}
               className="block w-full font-semibold p-4 ps-10 text-sm text-white border border-gray-300 rounded-lg bg-black focus:ring-white focus:border-white"
               placeholder="Search Merchants"
               required
@@ -35,7 +51,7 @@ function Server() {
             {search && (
               <MdOutlineCancel
                 className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-400 cursor-pointer"
-                // onClick={cancelSearch}
+                onClick={cancelSearch}
               />
             )}
           </div>
@@ -76,6 +92,10 @@ function Server() {
         >
           <GenerateServer closeSidebar={toggleSidebar} />
         </div>
+      </div>
+      {/* Table */}
+      <div className="mt-5">
+        <ServerTable search={search} ref={childRef} closeSidebar={isOpen} />
       </div>
     </div>
   );

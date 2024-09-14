@@ -23,6 +23,23 @@ const GenerateServer = ({ closeSidebar }) => {
     setServerlink("");
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const serverData = serverArray.map((item) => ({ vlessServers: item }));
+    const data = {
+      batch: name,
+      serverData,
+    };
+    // console.log(data);
+    const res = await createbatch(data);
+    console.log(res);
+    if (res.code === 201) {
+      closeSidebar();
+      setName("");
+      setServerArray([]);
+    }
+  };
+
   return (
     <div className="flex bg-secondary justify-center items-center h-screen overflow-y-auto py-5 relative">
       <div
@@ -100,7 +117,8 @@ const GenerateServer = ({ closeSidebar }) => {
                   </p>
                   <button
                     className="hover:text-primary focus:scale-110"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.preventDefault();
                       const updatedArray = serverArray.filter(
                         (_, i) => i !== index
                       );
@@ -115,6 +133,7 @@ const GenerateServer = ({ closeSidebar }) => {
 
           <button
             type="submit"
+            onClick={handleSubmit}
             className="w-full mt-5 bg-primary text-black p-2 rounded-md
              transition duration-200 hover:text-primary hover:bg-black hover:border hover:border-primary"
           >
@@ -127,6 +146,7 @@ const GenerateServer = ({ closeSidebar }) => {
 };
 
 import PropTypes from "prop-types";
+import createbatch from "../../api/createbatch";
 
 GenerateServer.propTypes = {
   closeSidebar: PropTypes.func.isRequired,
