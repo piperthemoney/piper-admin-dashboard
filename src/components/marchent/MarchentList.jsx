@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import GenerateCode from "./GenerateCode";
 import { LuTicket } from "react-icons/lu";
-import TicketTable from "./MarchentTable";
 import { IoSearch } from "react-icons/io5";
 import { MdOutlineCancel } from "react-icons/md";
+import MarchentTable from "./MarchentTable";
 // import { MdOutlineCalendarMonth } from "react-icons/md";
 
 const AccList = () => {
@@ -92,7 +92,7 @@ const AccList = () => {
         </div>
       </div>
       <div className="flex-1 py-4">
-        <TicketTable search={search} ref={childRef} closeSidebar={isOpen} />
+        <MarchentTable search={search} ref={childRef} closeSidebar={isOpen} />
       </div>
     </div>
   );

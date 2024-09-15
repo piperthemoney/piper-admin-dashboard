@@ -6,8 +6,8 @@ import { LuTicket } from "react-icons/lu";
 import { TbClockHour9 } from "react-icons/tb";
 import { Link, useParams } from "react-router-dom";
 import getmarchentsDetail from "../../api/getmarchentDetail";
-import MarchentTable from "./TicketTable";
 import ConvertToMMT from "../ConvertToMMT";
+import TicketTable from "./TicketTable";
 
 function MarchentDetails() {
   const { id } = useParams();
@@ -84,7 +84,7 @@ function MarchentDetails() {
       </div>
 
       <div className="mt-5">
-        <MarchentTable accs={accs} name={name} />
+        <TicketTable accs={accs} name={name} />
       </div>
     </div>
   );

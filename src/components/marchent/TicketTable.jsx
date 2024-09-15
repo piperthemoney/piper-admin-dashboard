@@ -6,8 +6,8 @@ import "./datagrid.css";
 import getexcel from "../../api/exportexcel";
 import { useParams } from "react-router-dom";
 
-export default function MarchentTable({ accs, name }) {
-  MarchentTable.propTypes = {
+export default function TicketTable({ accs, name }) {
+  TicketTable.propTypes = {
     accs: PropTypes.arrayOf(
       PropTypes.shape({
         code: PropTypes.string,

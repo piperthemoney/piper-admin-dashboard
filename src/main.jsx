@@ -3,12 +3,12 @@ import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 
 import "./index.css";
-import MobileBlocker from "./MobileBlocker.jsx";
+// import MobileBlocker from "./MobileBlocker.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <MobileBlocker>
-      <App />
-    </MobileBlocker>
+    {/* <MobileBlocker> */}
+    <App />
+    {/* </MobileBlocker> */}
   </StrictMode>
 );

@@ -1,8 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FiServer, FiWifi } from "react-icons/fi";
+import getbatchdetail from "../../api/getbatchdetail";
+import { useEffect, useState } from "react";
+import ServerList from "./ServerList";
 
 function ServerDetail() {
+  const { id } = useParams();
+  const [name, setName] = useState();
+  const [server, setServer] = useState([]);
+
+  const getBatchDetatl = async () => {
+    const res = await getbatchdetail(id);
+    // console.log(res.data.serverData.length);
+    setName(res.data.batch);
+    setServer(res.data.serverData);
+  };
+
+  useEffect(() => {
+    getBatchDetatl();
+  }, []);
+
   return (
     <div className="p-4">
       <Link
@@ -30,9 +48,13 @@ function ServerDetail() {
           <h2 className="text-xl font-bold mb-3">Server Number</h2>
           <p className="flex items-center">
             <FiWifi className="text-2xl" />
-            <span className="ps-3 font-medium"> </span>
+            <span className="ps-3 font-medium">{server.length} </span>
           </p>
         </div>
+      </div>
+
+      <div>
+        <ServerList servers={server} />
       </div>
     </div>
   );

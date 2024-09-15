@@ -12,13 +12,13 @@ function DashBoard() {
   const [chart, setChart] = useState();
   const getMonitor = async () => {
     const res = await getmonitor();
-    // console.log(res.lifespan);
+    console.log(res);
     setMonitor(res.isActiveStatus);
     setTotal(res.total_code);
     setChart(res.lifespan);
   };
 
-  console.log(monitor.active);
+  // console.log(monitor.active);
   console.log(total);
 
   useEffect(() => {

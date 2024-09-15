@@ -2,7 +2,8 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaWifi } from "react-icons/fa";
 
-const ServerTable = forwardRef(({ search }, ref) => {
+const ServerTable = forwardRef((props, ref) => {
+  const { search } = props;
   const navigate = useNavigate();
   const [rows, setRows] = useState([]);
   const getAllServer = async () => {
@@ -33,7 +34,7 @@ const ServerTable = forwardRef(({ search }, ref) => {
 
   useEffect(() => {
     getAllServer();
-  }, []);
+  }, [props]);
 
   return (
     <div className="overflow-x-auto bg-secondary p-4 rounded-lg">
