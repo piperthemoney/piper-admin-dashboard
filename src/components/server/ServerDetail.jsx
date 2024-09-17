@@ -9,6 +9,11 @@ function ServerDetail() {
   const { id } = useParams();
   const [name, setName] = useState();
   const [server, setServer] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+
+  const handleChildAction = () => {
+    setRefresh(!refresh);
+  };
 
   const getBatchDetatl = async () => {
     const res = await getbatchdetail(id);
@@ -19,7 +24,7 @@ function ServerDetail() {
 
   useEffect(() => {
     getBatchDetatl();
-  }, []);
+  }, [refresh]);
 
   return (
     <div className="p-4">
@@ -54,7 +59,11 @@ function ServerDetail() {
       </div>
 
       <div>
-        <ServerList servers={server} />
+        <ServerList
+          servers={server}
+          id={id}
+          onChildAction={handleChildAction}
+        />
       </div>
     </div>
   );
