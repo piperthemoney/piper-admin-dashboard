@@ -109,5 +109,7 @@ ServerList.propTypes = {
     })
   ).isRequired,
   id: PropTypes.string.isRequired,
+  onChildAction: PropTypes.func.isRequired,
 };
+
 export default ServerList;

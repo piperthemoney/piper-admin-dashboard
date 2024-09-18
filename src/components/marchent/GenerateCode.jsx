@@ -6,19 +6,19 @@ import { LuTicket } from "react-icons/lu";
 import { TbClockHour9 } from "react-icons/tb";
 import { CiCircleInfo } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
+import "./../../input.css";
 
 const GenerateCode = ({ closeSidebar }) => {
   const [merchant, setMerchant] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [lifespan, setLifespan] = useState("");
-  const currentDate = new Date(); // Get the current date
+  const [batchName, setBatchName] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
-  const formatDate = (date) => {
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-    const year = date.getFullYear();
-    return `${day}.${month}.${year}`;
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
   };
+  // const currentDate = new Date(); // Get the current date
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +26,7 @@ const GenerateCode = ({ closeSidebar }) => {
       merchant,
       quantity: parseInt(quantity),
       lifespan,
+      batchName,
     };
     const res = await generateCode(data);
     if (res.code === 201) {
@@ -54,7 +55,7 @@ const GenerateCode = ({ closeSidebar }) => {
               className="block text-lg font-bold text-white"
               htmlFor="merchant"
             >
-              Code Create Date
+              Batch Name
             </label>
             <div className="relative mb-6">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -63,10 +64,11 @@ const GenerateCode = ({ closeSidebar }) => {
               <input
                 type="text"
                 id="input-group-1"
-                value={formatDate(currentDate)}
-                disabled
+                value={batchName}
+                autoComplete="off"
+                onChange={(e) => setBatchName(e.target.value)}
                 className="bg-black border border-gray-300 text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                placeholder="name@flowbite.com"
+                placeholder="batch 1"
               />
             </div>
           </div>
@@ -84,6 +86,7 @@ const GenerateCode = ({ closeSidebar }) => {
               <input
                 type="text"
                 value={merchant}
+                autoComplete="off"
                 onChange={(e) => setMerchant(e.target.value)}
                 id="input-group-1"
                 className="bg-black border border-gray-300 text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
@@ -105,17 +108,22 @@ const GenerateCode = ({ closeSidebar }) => {
               <input
                 type="number"
                 value={quantity}
+                autoComplete="off"
                 onChange={(e) => setQuantity(e.target.value)}
                 id="input-group-1"
-                className="bg-black border border-gray-300 text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 px-5 py-2.5"
+                className="no-spinner bg-black border border-gray-300 text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 px-5 py-2.5"
                 placeholder="Add Quantity"
               />
             </div>
-            <div className="flex gap-2 mt-1">
+            <div
+              className={
+                quantity > 100
+                  ? "text-expired text-md flex gap-2 mt-1 "
+                  : "text-md flex gap-2 mt-1 "
+              }
+            >
               <CiCircleInfo className="text-2xl" />
-              <p className="text-md">
-                The Maximum numbers for creating account is 100
-              </p>
+              <p>The Maximum numbers for creating account is 100</p>
             </div>
           </div>
           <div className="mb-4">
@@ -125,18 +133,62 @@ const GenerateCode = ({ closeSidebar }) => {
             >
               Lifespan
             </label>
-            <div className="relative mb-6">
-              <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+            <div className="relative mb-6 bg-secondary">
+              <button
+                id="dropdownDefaultButton"
+                onClick={toggleDropdown}
+                className="text-white w-full border border-gray-300 bg-black focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+                type="button"
+              >
                 <TbClockHour9 className="text-2xl" />
-              </div>
-              <input
-                type="text"
-                value={lifespan}
-                onChange={(e) => setLifespan(e.target.value)}
-                id="input-group-1"
-                className="bg-black border border-gray-300 text-white text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                placeholder="enter your account duration"
-              />
+                <p className="text-right w-full">{lifespan}</p>
+              </button>
+
+              {isOpen && (
+                <div
+                  id="dropdown"
+                  className="z-10 bg-black divide-y bg-black border border-white rounded-md shadow w-full absolute bottom-full "
+                >
+                  <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 ">
+                    <li
+                      onClick={() => {
+                        setLifespan("1month");
+                        toggleDropdown();
+                      }}
+                      className="hover:text-primary cursor-pointer"
+                    >
+                      <p className="font-medium px-4 py-2">1 Month</p>
+                    </li>
+                    <li
+                      onClick={() => {
+                        setLifespan("3months");
+                        toggleDropdown();
+                      }}
+                      className="hover:text-primary cursor-pointer"
+                    >
+                      <p className="font-medium px-4 py-2">3 Months</p>
+                    </li>
+                    <li
+                      onClick={() => {
+                        setLifespan("6months");
+                        toggleDropdown();
+                      }}
+                      className="hover:text-primary cursor-pointer"
+                    >
+                      <p className="font-medium px-4 py-2">6 Months</p>
+                    </li>
+                    <li
+                      onClick={() => {
+                        setLifespan("12year");
+                        toggleDropdown();
+                      }}
+                      className="hover:text-primary cursor-pointer"
+                    >
+                      <p className="font-medium px-4 py-2">12 Months</p>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
           <button

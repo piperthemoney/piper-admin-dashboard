@@ -42,9 +42,10 @@ function Server() {
               type="text"
               id="default-search"
               value={search}
+              autoComplete="off"
               onChange={(e) => setSearch(e.target.value)}
               onKeyPress={handleKeyPress}
-              className="block w-full font-semibold p-4 ps-10 text-sm text-white border border-gray-300 rounded-lg bg-black focus:ring-white focus:border-white"
+              className="block autocomplete:bg-black w-full font-semibold p-4 ps-10 text-sm text-white border border-gray-300 rounded-lg bg-black focus:bg-black focus:border-white"
               placeholder="Search Merchants"
               required
             />

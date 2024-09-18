@@ -22,6 +22,16 @@ body {
   background: #edf2f7; /* Background of the scrollbar track */
 }
 
+@layer utilities {
+  .no-spinner {
+    /* For Chrome, Safari, Edge, Opera */
+    -webkit-appearance: none;
+    margin: 0;
+    /* For Firefox */
+    -moz-appearance: textfield;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

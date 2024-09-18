@@ -67,6 +67,7 @@ const GenerateServer = ({ closeSidebar }) => {
               <input
                 type="text"
                 value={name}
+                autoComplete="off"
                 onChange={(e) => setName(e.target.value)}
                 id="input-group-1"
                 className="bg-black border border-gray-300 text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
@@ -89,6 +90,7 @@ const GenerateServer = ({ closeSidebar }) => {
               <input
                 type="text"
                 value={serverlink}
+                autoComplete="off"
                 onChange={(e) => setServerlink(e.target.value)}
                 id="input-group-1"
                 className="bg-black border border-gray-300 text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 px-5 py-2.5"
