@@ -3,7 +3,10 @@ import { BiWorld } from "react-icons/bi";
 import { TbTool } from "react-icons/tb";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import ReactCountryFlag from "react-country-flag";
+import { RiMapPinLine } from "react-icons/ri";
 import Modal from "./Model";
+import "./server.css";
 
 function ServerList({ servers, id, onChildAction }) {
   const [_id, setId] = useState("");
@@ -34,23 +37,22 @@ function ServerList({ servers, id, onChildAction }) {
         </div>
       </div>
 
-      <div>
+      <div
+        className="custom-scrollbar overflow-y-auto"
+        style={{ height: "50vh" }}
+      >
         <div className="text-white p-2">
-          <div className="flex justify-around">
+          <div className="justify-around">
             {Object.entries(groupedServers).map(
               ([geoLocation, serverList], index) => (
-                <div key={geoLocation} className="w-1/3 p-4 flex">
-                  <div>
+                <div key={geoLocation} className="py-4 flex flex-col">
+                  <div className="w-full px-10">
                     <div className="text-xl mb-5 flex items-center justify-between">
-                      {geoLocation === "SG" && "🇸🇬"}
-                      {geoLocation === "HK" && "🇭🇰"}
-                      {geoLocation === "KR" && "🇰🇷"}
-                      {geoLocation === "US" && "🇺🇸"}
-                      {geoLocation === "DE" && "🇩🇪"}
+                      <ReactCountryFlag countryCode={geoLocation} />
                       <span>{geoLocation} Server</span>
                     </div>
                     {serverList.map((server, index) => (
-                      <div key={server._id} className="my-2 rounded-lg">
+                      <div key={server._id} className="mb-10">
                         <div className="flex justify-between">
                           <p className="text-xl font-medium">
                             IP Address {index + 1}
@@ -66,7 +68,7 @@ function ServerList({ servers, id, onChildAction }) {
                         </div>
                         {/* <p>Response Time: 1000ms</p> */}
                         <div className="border mb-2 border-gray-500 flex justify-between px-4 py-2 rounded-lg">
-                          <BiWorld className="text-2xl" />
+                          <RiMapPinLine className="text-2xl" />
                           <p className="font-medium">{server.serverAddress}</p>
                         </div>
                         <div className="border border-gray-500 flex justify-between px-4 py-2 rounded-lg">
@@ -78,7 +80,7 @@ function ServerList({ servers, id, onChildAction }) {
                   </div>
                   {/* Conditional Divider */}
                   {index !== Object.keys(groupedServers).length - 1 && (
-                    <div className="ms-5 border-l-2 border-gray-700"></div>
+                    <div className=" border-b-2 border-red"></div>
                   )}
                 </div>
               )
