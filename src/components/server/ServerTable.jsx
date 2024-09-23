@@ -3,13 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { FaWifi } from "react-icons/fa";
 
 const ServerTable = forwardRef((props, ref) => {
-  const { search } = props;
+  const { search, servers } = props;
   const navigate = useNavigate();
   const [rows, setRows] = useState([]);
   const getAllServer = async () => {
-    const res = await getallserver();
-    console.log(res);
-    setRows(res.data.reverse());
+    setRows(servers.reverse());
   };
 
   useImperativeHandle(ref, () => ({
@@ -84,13 +82,12 @@ const ServerTable = forwardRef((props, ref) => {
     </div>
   );
 });
-
 import PropTypes from "prop-types";
-import getallserver from "../../api/getallserver";
-
 ServerTable.propTypes = {
   search: PropTypes.string,
+  servers: PropTypes.array.isRequired,
 };
+
 ServerTable.displayName = "TicketTable";
 
 export default ServerTable;

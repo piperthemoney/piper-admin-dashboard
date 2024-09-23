@@ -1,14 +1,25 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { MdOutlineCancel } from "react-icons/md";
 import { FiServer } from "react-icons/fi";
 import GenerateServer from "./GenerateServer";
 import "./server.css";
 import ServerTable from "./ServerTable";
+import getallserver from "../../api/getallserver";
 
 function Server() {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const [servers, setServers] = useState([]);
+  const getAllServer = async () => {
+    const res = await getallserver();
+    // console.log(res);
+    setServers(res.data.reverse());
+  };
+
+  useEffect(() => {
+    getAllServer();
+  }, []);
 
   const childRef = useRef();
 
@@ -91,12 +102,17 @@ function Server() {
             // background:"black"
           }}
         >
-          <GenerateServer closeSidebar={toggleSidebar} />
+          <GenerateServer closeSidebar={toggleSidebar} servers={servers} />
         </div>
       </div>
       {/* Table */}
       <div className="mt-5">
-        <ServerTable search={search} ref={childRef} closeSidebar={isOpen} />
+        <ServerTable
+          search={search}
+          ref={childRef}
+          closeSidebar={isOpen}
+          servers={servers}
+        />
       </div>
     </div>
   );

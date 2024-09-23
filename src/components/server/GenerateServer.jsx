@@ -3,25 +3,45 @@ import { FiServer } from "react-icons/fi";
 import { FaWifi } from "react-icons/fa";
 import { FiUpload } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
+import PropTypes from "prop-types";
+import createbatch from "../../api/createbatch";
+import { toast } from "sonner";
 
-const GenerateServer = ({ closeSidebar }) => {
+const GenerateServer = ({ closeSidebar, servers }) => {
   const [name, setName] = useState("");
   const [serverlink, setServerlink] = useState("");
   const [serverArray, setServerArray] = useState([]);
-  // const currentDate = new Date(); // Get the current date
+  const [error, setError] = useState(false);
 
-  // const formatDate = (date) => {
-  //   const day = String(date.getDate()).padStart(2, "0");
-  //   const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-  //   const year = date.getFullYear();
-  //   return `${day}.${month}.${year}`;
-  // };
-
-  const handleServer = (e) => {
+  const checkAndAddVlessServer = (e) => {
     e.preventDefault();
-    setServerArray((perv) => [...perv, serverlink]);
-    setServerlink("");
+    // Flatten and get the vlessServers list
+    const vlessServers = servers.flatMap((batch) =>
+      batch.serverData.map((server) => server.vlessServers)
+    );
+
+    // Check if the newVlessLink is unique
+    const isUnique = !vlessServers.some((server) => server === serverlink);
+
+    if (isUnique) {
+      setServerArray((perv) => [...perv, serverlink]);
+      setServerlink("");
+      console.log("is Unique");
+      setError(false);
+    } else {
+      console.log("already exit");
+      setError(true);
+      toast.error("this link already used");
+    }
   };
+
+  // const handleServer = async (e) => {
+  //   e.preventDefault();
+  //   const res = await checkAndAddVlessServer(serverlink);
+  //   console.log(res);
+  //   setServerArray((perv) => [...perv, serverlink]);
+  //   setServerlink("");
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,13 +113,15 @@ const GenerateServer = ({ closeSidebar }) => {
                 autoComplete="off"
                 onChange={(e) => setServerlink(e.target.value)}
                 id="input-group-1"
-                className="bg-black border border-gray-300 text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 px-5 py-2.5"
+                className={`bg-black border ${
+                  error ? "border-expired" : "border-gray-300"
+                } text-white-100 text-lg text-right rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 px-5 py-2.5`}
                 placeholder="Enter your server address"
               />
             </div>
             <button
               className="flex mt-2 items-center justify-center w-full bg-black border border-gray-300 text-white-100 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 px-5 py-2.5"
-              onClick={handleServer}
+              onClick={checkAndAddVlessServer}
             >
               <FiUpload className="text-xl" />
               <p className="text-sm ms-2">Upload Server</p>
@@ -147,11 +169,17 @@ const GenerateServer = ({ closeSidebar }) => {
   );
 };
 
-import PropTypes from "prop-types";
-import createbatch from "../../api/createbatch";
-
 GenerateServer.propTypes = {
   closeSidebar: PropTypes.func.isRequired,
+  servers: PropTypes.arrayOf(
+    PropTypes.shape({
+      serverData: PropTypes.arrayOf(
+        PropTypes.shape({
+          vlessServers: PropTypes.string.isRequired,
+        })
+      ).isRequired,
+    })
+  ).isRequired,
 };
 
 export default GenerateServer;
