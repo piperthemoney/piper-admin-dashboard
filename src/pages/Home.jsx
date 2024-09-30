@@ -8,6 +8,7 @@ import AccList from "../components/marchent/MarchentList";
 import DashBoard from "../components/dashboard/DashBoard";
 import Server from "./../components/server/Server";
 import ServerDetail from "../components/server/ServerDetail";
+import ServerLink from "../components/serverlink/ServerLink";
 
 function Home() {
   return (
@@ -20,8 +21,9 @@ function Home() {
             <Route path="/acc" element={<AccList />} />
             <Route path="/code" element={<GenerateCode />} />
             <Route path="/merchant-detail/:id" element={<MarchentDetail />} />
-            <Route path="/server" element={<Server />} />
-            <Route path="/server-detail/:id" element={<ServerDetail />} />
+            <Route path="/batch" element={<Server />} />
+            <Route path="/batch-detail/:id" element={<ServerDetail />} />
+            <Route path="/server" element={<ServerLink />} />
           </Routes>
         </div>
       </SnackbarProvider>

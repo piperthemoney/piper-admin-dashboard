@@ -1,9 +1,9 @@
 import axios from "axios";
-const BASE_URL = "https://piper-uglv.onrender.com/";
+const BASE_URL = import.meta.env.VITE_PIPER_API;
 
 // Create an Axios instance
 axios.defaults.baseURL = BASE_URL;
-const token = localStorage.getItem("piper-token");
+// const token = localStorage.getItem("piper-token");
 const setAuthToken = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };

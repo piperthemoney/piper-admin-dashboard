@@ -3,6 +3,7 @@ import { LuTicket } from "react-icons/lu";
 import { IoMdExit } from "react-icons/io";
 import { MdOutlineTroubleshoot } from "react-icons/md";
 import { LuFolderCog } from "react-icons/lu";
+import { FaServer } from "react-icons/fa";
 import logo from "./../assets/logo.png";
 
 const Sidebar = () => {
@@ -50,7 +51,7 @@ const Sidebar = () => {
 
           <li>
             <NavLink
-              to="/server"
+              to="/batch"
               className={({ isActive }) =>
                 `block flex gap-4 p-2 rounded ${
                   isActive
@@ -60,6 +61,22 @@ const Sidebar = () => {
               }
             >
               <LuFolderCog className="text-2xl" />
+              Batch Management
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              to="/server"
+              className={({ isActive }) =>
+                `block flex gap-4 p-2 rounded ${
+                  isActive
+                    ? "bg-primary text-black font-semibold"
+                    : "hover:bg-gray-700 text-white"
+                }`
+              }
+            >
+              <FaServer className="text-2xl" />
               Server Management
             </NavLink>
           </li>

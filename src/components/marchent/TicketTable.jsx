@@ -36,7 +36,7 @@ export default function TicketTable({ accs, name }) {
     link.parentNode.removeChild(link);
   };
 
-  // console.log( accs);
+  // console.log(accs);
   return (
     <div className="overflow-x-auto bg-secondary p-4  w-full rounded-lg">
       <div className="flex justify-between items-center mb-5">

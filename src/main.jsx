@@ -7,8 +7,8 @@ import MobileBlocker from "./MobileBlocker.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <MobileBlocker>
-      <App />
-    </MobileBlocker>
+    {/* <MobileBlocker> */}
+    <App />
+    {/* </MobileBlocker> */}
   </StrictMode>
 );

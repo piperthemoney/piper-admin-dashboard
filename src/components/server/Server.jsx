@@ -13,7 +13,7 @@ function Server() {
   const [servers, setServers] = useState([]);
   const getAllServer = async () => {
     const res = await getallserver();
-    // console.log(res);
+    // console.log(res.data);
     setServers(res.data.reverse());
   };
 
@@ -42,7 +42,7 @@ function Server() {
 
   return (
     <div className="px-5">
-      <p className="text-2xl font-medium">Server Management</p>
+      <p className="text-2xl font-medium">Batch Management</p>
       <div className="flex justify-between mt-5">
         <div className="flex items-center gap-5">
           <div className="relative w-[400px]">

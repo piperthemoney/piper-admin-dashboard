@@ -40,7 +40,7 @@ const MarchentTable = forwardRef((props, ref) => {
 
   return (
     <div className="overflow-x-auto bg-secondary p-4  w-full rounded-lg">
-      <div className="w-full bg-secondary h-1/3 overflow-y-auto max-h-[80vh]">
+      <div className="w-full bg-secondary h-1/3 overflow-y-auto max-h-[70vh]">
         <table className="min-w-full gap-2 ">
           <thead className="border-space-y-5 sticky top-0 z-5">
             <tr className="bg-white text-black text-left rounded-lg">
@@ -80,7 +80,7 @@ const MarchentTable = forwardRef((props, ref) => {
                       onClick={() => {
                         navigate(`/merchant-detail/${item.id}`);
                       }}
-                      className="flex px-4 py-2 text-[14px] gap-4 bg-white text-black py-1 px-3 rounded-lg hover:bg-black hover:text-white hover:border-white border-2"
+                      className="flex items-center px-4 py-2 text-[14px] gap-4 bg-white text-black py-1 px-3 rounded-lg hover:bg-black hover:text-white hover:border-white border-2"
                     >
                       <LuTicket className="text-2xl" />
                       View Tickets

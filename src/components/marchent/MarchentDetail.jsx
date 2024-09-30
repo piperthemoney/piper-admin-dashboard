@@ -35,7 +35,7 @@ function MarchentDetails() {
 
   return (
     <div className="p-4">
-      <Link to="/" className="flex items-center space-x-2  cursor-pointer">
+      <Link to="/acc" className="flex items-center space-x-2  cursor-pointer">
         <FaArrowLeftLong className="text-2xl" />
         <span className="text-2xl font-bold ps-3 ">Purchase Details</span>
       </Link>

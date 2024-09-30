@@ -1,3 +1,7 @@
+import PropTypes from "prop-types";
+import { useState } from "react";
+import updatelinkserver from "../../api/updatelink";
+
 const Modal = ({ isOpen, onClose, id, link, _id }) => {
   const [updateLink, setUpdateLink] = useState("");
   const updateServerLink = async () => {
@@ -66,10 +70,6 @@ const Modal = ({ isOpen, onClose, id, link, _id }) => {
     </div>
   );
 };
-
-import PropTypes from "prop-types";
-import { useState } from "react";
-import updatelinkserver from "../../api/updatelink";
 
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,

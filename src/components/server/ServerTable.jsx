@@ -4,6 +4,7 @@ import { FaWifi } from "react-icons/fa";
 
 const ServerTable = forwardRef((props, ref) => {
   const { search, servers } = props;
+  // console.log(servers);
   const navigate = useNavigate();
   const [rows, setRows] = useState([]);
   const getAllServer = async () => {
@@ -62,7 +63,7 @@ const ServerTable = forwardRef((props, ref) => {
                 >
                   <td className="py-2 px-4">{index + 1}</td>
                   <td className="py-2 px-4">{item.batch}</td>
-                  <td className="py-2 px-4">{item.serverData.length}</td>
+                  <td className="py-2 px-4">{item.length}</td>
                   <td className="py-2 px-4">
                     <button
                       onClick={() => {
