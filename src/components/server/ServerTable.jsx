@@ -44,6 +44,7 @@ const ServerTable = forwardRef((props, ref) => {
               <th className="py-4 px-4 font-medium">No</th>
               <th className="py-4 px-4 font-medium">Branch Name</th>
               <th className="py-4 px-4 font-medium">Server Number</th>
+              <th className="py-4 px-4 font-medium">Ticket Number</th>
               <th className="py-4 px-4 font-medium"></th>
             </tr>
           </thead>
@@ -63,11 +64,12 @@ const ServerTable = forwardRef((props, ref) => {
                 >
                   <td className="py-2 px-4">{index + 1}</td>
                   <td className="py-2 px-4">{item.batch}</td>
-                  <td className="py-2 px-4">{item.length}</td>
+                  <td className="py-2 px-4">{item.serverCount}</td>
+                  <td className="py-2 px-4">{item.totalGenCodeCount}</td>
                   <td className="py-2 px-4">
                     <button
                       onClick={() => {
-                        navigate(`/server-detail/${item.id}`);
+                        navigate(`/batch-detail/${item.id}`);
                       }}
                       className="flex px-4 py-2 text-[14px] gap-4 bg-white text-black py-1 px-3 rounded-lg hover:bg-black hover:text-white hover:border-white border-2"
                     >
