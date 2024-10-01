@@ -148,8 +148,8 @@ const ServerPing = () => {
           setModalOpen(false);
           fetchServers();
         }}
-        id={linkId}
-        _id={_id}
+        id={_id}
+        _id={linkId}
         link={link}
       />
     </div>
