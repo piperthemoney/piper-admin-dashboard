@@ -28,10 +28,7 @@ function ServerDetail() {
 
   return (
     <div className="p-4">
-      <Link
-        to="/server"
-        className="flex items-center space-x-2  cursor-pointer"
-      >
+      <Link to="/batch" className="flex items-center space-x-2  cursor-pointer">
         <FaArrowLeftLong className="text-2xl" />
         <span className="text-2xl font-bold ps-3 ">
           Server Management Details

@@ -1,21 +1,20 @@
 import { FiWifi } from "react-icons/fi";
 import { BiWorld } from "react-icons/bi";
 import { TbTool } from "react-icons/tb";
+import { MdAddLink } from "react-icons/md";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReactCountryFlag from "react-country-flag";
 import { RiMapPinLine } from "react-icons/ri";
 import Modal from "./Model";
 import "./server.css";
+import AddServerLink from "./AddServerLink";
 
 function ServerList({ servers, id, onChildAction }) {
   const [_id, setId] = useState("");
   const [link, setLink] = useState("");
   const [isModalOpen, setModalOpen] = useState(false);
-
-  useEffect(() => {
-    onChildAction();
-  }, [isModalOpen]);
+  const [addModelOpen, setAddModelOpen] = useState(false);
 
   // Group servers by geoLocation
   const groupedServers =
@@ -35,10 +34,20 @@ function ServerList({ servers, id, onChildAction }) {
           <FiWifi className="text-2xl " />
           <p className="ms-5 text-xl font-medium">Servers</p>
         </div>
+
+        <button
+          className="bg-primary py-2 px-5 rounded-lg text-black flex items-center me-10 border border-black transition hover:bg-black hover:text-white hover:border-primary"
+          onClick={() => {
+            setAddModelOpen(true);
+          }}
+        >
+          <MdAddLink className="text-2xl" />
+          <p className="ms-2 text-xl font-medium">Add</p>
+        </button>
       </div>
 
       <div
-        className="custom-scrollbar overflow-y-auto"
+        className="custom-scrollbar overflow-y-auto mt-5"
         style={{ height: "50vh" }}
       >
         <div className="text-white p-2">
@@ -91,10 +100,22 @@ function ServerList({ servers, id, onChildAction }) {
 
       <Modal
         isOpen={isModalOpen}
-        onClose={() => setModalOpen(false)}
+        onClose={() => {
+          setModalOpen(false);
+          onChildAction();
+        }}
         id={id}
         _id={_id}
         link={link}
+      />
+
+      <AddServerLink
+        id={id}
+        isOpen={addModelOpen}
+        onClose={() => {
+          setAddModelOpen(false);
+          onChildAction();
+        }}
       />
     </div>
   );
