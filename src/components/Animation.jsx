@@ -14,12 +14,6 @@ const Animation = ({ animationData }) => {
       animationData: animationData,
     });
 
-    // Change colors after the animation is loaded
-    animationInstance.addEventListener("DOMLoaded", () => {
-      // Change specific colors of the animation
-      animationInstance.setSubstitution("ColorName", "#FF0000"); // Replace 'ColorName' and '#FF0000' with the correct color name and desired color value
-    });
-
     return () => animationInstance.destroy();
   }, [animationData]);
 

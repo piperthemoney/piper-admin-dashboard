@@ -5,6 +5,11 @@ import { TbTool } from "react-icons/tb";
 import Modal from "../server/Model";
 import Animation from "../Animation";
 import animationData from "./../animations/loadingV2.json";
+import { io } from "socket.io-client";
+const socket = io.connect("https://vmi2148783.contaboserver.net", {
+  transports: ["websocket"],
+  secure: true,
+});
 
 const ServerPing = () => {
   const [servers, setServers] = useState([]);
@@ -37,11 +42,48 @@ const ServerPing = () => {
     }
   };
 
+  // console.log(servers);
+
+  const updateTableData = (newServerData) => {
+    setServers((prevData) => {
+      return prevData.map((item) => {
+        console.log(item.serverData.serverAddress);
+        // If the server ID matches, update the entry
+        if (item.serverData.serverAddress === newServerData.serverAddress) {
+          // console.log(serverId)
+          return {
+            ...item,
+            serverData: {
+              ...item.serverData,
+              status: newServerData.status,
+              responseTime: newServerData.responseTime,
+            },
+          };
+        }
+        return item; // Return the original item if it doesn't match
+      });
+    });
+  };
+
+  useEffect(() => {
+    console.log("Connecting to socket...");
+
+    socket.on("connect", () => {
+      console.log("Socket connected:", socket.id); // Log the socket ID
+    });
+    // console.log("hey");
+    socket.on("pingResult", (data) => {
+      console.log("work");
+      console.log(data);
+      updateTableData(data);
+      // setRealTime(data)
+      // console.log(data);
+    });
+  }, [socket]);
+
   useEffect(() => {
     fetchServers();
   }, [loading]);
-
-  console.log(servers);
 
   if (loading) {
     return (

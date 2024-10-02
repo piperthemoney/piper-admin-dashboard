@@ -3,7 +3,7 @@ import { LuTicket } from "react-icons/lu";
 import { IoMdExit } from "react-icons/io";
 import { MdOutlineTroubleshoot } from "react-icons/md";
 import { LuFolderCog } from "react-icons/lu";
-import { FaServer } from "react-icons/fa";
+import { MdMonitorHeart } from "react-icons/md";
 import logo from "./../assets/logo.png";
 
 const Sidebar = () => {
@@ -76,8 +76,8 @@ const Sidebar = () => {
                 }`
               }
             >
-              <FaServer className="text-2xl" />
-              Server Management
+              <MdMonitorHeart className="text-2xl" />
+              Server Monitor
             </NavLink>
           </li>
 
