@@ -6,7 +6,7 @@ import Modal from "../server/Model";
 import Animation from "../Animation";
 import animationData from "./../animations/loadingV2.json";
 import { io } from "socket.io-client";
-const socket = io.connect("https://vmi2148783.contaboserver.net", {
+const socket = io.connect("letslearntogetherenglish.online", {
   transports: ["websocket"],
   secure: true,
 });
@@ -42,8 +42,8 @@ const ServerPing = () => {
     }
   };
 
-  // console.log(servers);
-
+  console.log(servers);
+  //
   const updateTableData = (newServerData) => {
     setServers((prevData) => {
       return prevData.map((item) => {
